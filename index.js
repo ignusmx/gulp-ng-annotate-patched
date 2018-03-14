@@ -1,13 +1,13 @@
 "use strict";
 
 var through = require("through2");
-var ngAnnotate = require("ng-annotate");
+var ngAnnotate = require("ng-annotate-patched");
 var applySourceMap = require("vinyl-sourcemaps-apply");
 var merge = require("merge");
 var BufferStreams = require("bufferstreams");
 var PluginError = require("plugin-error");
 
-var PLUGIN_NAME = "gulp-ng-annotate";
+var PLUGIN_NAME = "gulp-ng-annotate-patched";
 
 // Function which handle logic for both stream and buffer modes.
 function transform(file, input, opts) {

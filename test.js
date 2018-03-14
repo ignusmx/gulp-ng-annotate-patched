@@ -10,6 +10,8 @@ var PluginError = require("plugin-error");
 var ORIGINAL = 'angular.module("test"); m.directive("foo", function($a, $b) {});';
 var TRANSFORMED = 'angular.module("test"); m.directive("foo", ["$a", "$b", function($a, $b) {}]);';
 var BAD_INPUT = 'angular.module("test").directive("foo", function$a, $b) {});';
+var ORIGINAL_ES6 = 'import * as angular from "angular"; angular.module("test"); m.directive("foo", function($a, $b) {});';
+var TRANSFORMED_ES6 = 'import * as angular from "angular"; angular.module("test"); m.directive("foo", ["$a", "$b", function($a, $b) {}]);';
 
 describe("gulp-ng-annotate", function() {
   it("should annotate angular declarations", function (done) {
@@ -113,4 +115,19 @@ describe("gulp-ng-annotate", function() {
 
     stream.write(new Vinyl({contents: contentsStream}));
   });
+});
+
+describe("gulp-ng-annotate-patched", function() {
+
+  it("should annotate angular declarations with ES6 imports/exports", function (done) {
+    var stream = ngAnnotate();
+
+    stream.on("data", function (data) {
+      assert.equal(data.contents.toString(), TRANSFORMED_ES6);
+      done();
+    });
+
+    stream.write(new Vinyl({contents: new Buffer(ORIGINAL_ES6)}));
+  });
+
 });
