@@ -1,7 +1,7 @@
 # gulp-ng-annotate-patched
-Fork of [gulp-ng-annotate](https://travis-ci.org/Kagami/gulp-ng-annotate) updated to use [ng-annotate-patched](https://github.com/bluetech/ng-annotate-patched). 
+Fork of [gulp-ng-annotate](https://travis-ci.org/Kagami/gulp-ng-annotate) updated to use [ng-annotate-patched](https://github.com/nevcos/ng-annotate-patched). 
 
-> Add angularjs dependency injection annotations with [ng-annotate-patched](https://github.com/bluetech/ng-annotate-patched) with support for ES6 import/export.
+> Add angularjs dependency injection annotations with [ng-annotate-patched](https://github.com/nevcos/ng-annotate-patched) fork with support for ES6 import/export and classes.
 
 ## Install
 

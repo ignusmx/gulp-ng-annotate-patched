@@ -10,8 +10,9 @@ var PluginError = require("plugin-error");
 var ORIGINAL = 'angular.module("test"); m.directive("foo", function($a, $b) {});';
 var TRANSFORMED = 'angular.module("test"); m.directive("foo", ["$a", "$b", function($a, $b) {}]);';
 var BAD_INPUT = 'angular.module("test").directive("foo", function$a, $b) {});';
-var ORIGINAL_ES6 = 'import * as angular from "angular"; angular.module("test"); m.directive("foo", function($a, $b) {});';
-var TRANSFORMED_ES6 = 'import * as angular from "angular"; angular.module("test"); m.directive("foo", ["$a", "$b", function($a, $b) {}]);';
+var ORIGINAL_ES6 = 'import * as angular from "angular"; angular.module("test"); export class FooController { constructor($a, $b) { "ngInject"; } } m.component("foo", FooController);';
+var TRANSFORMED_ES6 = `import * as angular from "angular"; angular.module("test"); export class FooController { constructor($a, $b) { "ngInject"; } }
+FooController.$inject = ["$a", "$b"]; m.component("foo", FooController);`;
 
 describe("gulp-ng-annotate", function() {
   it("should annotate angular declarations", function (done) {
