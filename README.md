@@ -1,18 +1,19 @@
-# [gulp](http://gulpjs.com)-ng-annotate [![Build Status](https://travis-ci.org/Kagami/gulp-ng-annotate.svg?branch=master)](https://travis-ci.org/Kagami/gulp-ng-annotate)
+# gulp-ng-annotate-patched
+Fork of [gulp-ng-annotate](https://travis-ci.org/Kagami/gulp-ng-annotate) updated to use [ng-annotate-patched](https://github.com/bluetech/ng-annotate-patched). 
 
-> Add angularjs dependency injection annotations with [ng-annotate](https://github.com/olov/ng-annotate)
+> Add angularjs dependency injection annotations with [ng-annotate-patched](https://github.com/bluetech/ng-annotate-patched) with support for ES6 import/export.
 
 ## Install
 
 ```bash
-$ npm install --save-dev gulp-ng-annotate
+$ npm install --save-dev gulp-ng-annotate-patched
 ```
 
 ## Usage
 
 ```js
 var gulp = require('gulp');
-var ngAnnotate = require('gulp-ng-annotate');
+var ngAnnotate = require('gulp-ng-annotate-patched');
 
 gulp.task('default', function () {
 	return gulp.src('src/app.js')
