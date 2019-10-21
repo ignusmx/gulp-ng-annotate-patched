@@ -13,6 +13,8 @@ var BAD_INPUT = 'angular.module("test").directive("foo", function$a, $b) {});';
 var ORIGINAL_ES6 = 'import * as angular from "angular"; angular.module("test"); export class FooController { constructor($a, $b) { "ngInject"; } } m.component("foo", FooController);';
 var TRANSFORMED_ES6 = `import * as angular from "angular"; angular.module("test"); export class FooController { constructor($a, $b) { "ngInject"; } }
 FooController.$inject = ["$a", "$b"]; m.component("foo", FooController);`;
+var ORIGINAL_ARROW = 'angular.module("test"); m.directive("foo", ($a, $b) => {});'
+var TRANSFORMED_ARROW = 'angular.module("test"); m.directive("foo", ["$a", "$b", ($a, $b) => {}]);';
 
 describe("gulp-ng-annotate", function() {
   it("should annotate angular declarations", function (done) {
@@ -129,6 +131,17 @@ describe("gulp-ng-annotate-patched", function() {
     });
 
     stream.write(new Vinyl({contents: new Buffer(ORIGINAL_ES6)}));
+  });
+
+  it("should annotate ES6 arrow functions", function (done) {
+    var stream = ngAnnotate();
+
+    stream.on("data", function (data) {
+      assert.equal(data.contents.toString(), TRANSFORMED_ARROW);
+      done();
+    });
+
+    stream.write(new Vinyl({contents: new Buffer(ORIGINAL_ARROW)}));
   });
 
 });
