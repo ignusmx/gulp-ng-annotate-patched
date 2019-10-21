@@ -1,6 +1,6 @@
 {
   "name": "gulp-ng-annotate-patched",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Add angularjs dependency injection annotations with ng-annotate-patched",
   "main": "index.js",
   "engines": {
